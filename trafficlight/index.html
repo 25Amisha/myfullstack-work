@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .traffic-light {
+            width: 100px;
+            height: 300px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .light {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            transition: opacity 0.3s;
+        }
+        .red {
+            background-color: #ff0000;
+            top: 0;
+        }
+        .yellow {
+            background-color: #ffff00;
+            top: 100px;
+        }
+        .green {
+            background-color: #00ff00;
+            top: 200px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+    <title>Traffic Light</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Traffic Light</h2>
+        <div class="traffic-light" id="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+        </div>
+        <button onclick="switchLight()">Switch</button>
+    </div>
+    <script>
+        let currentLight = 0;
+        const lights = document.querySelectorAll('.light');
+
+        function switchLight() {
+            lights.forEach(light => light.style.opacity = '0');
+            lights[currentLight].style.opacity = '1';
+            currentLight = (currentLight + 1) % lights.length;
+        }
+
+        setInterval(switchLight, 3000);
+    </script>
+</body>
+</html>
